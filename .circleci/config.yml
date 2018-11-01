@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: matrim/cmake-examples:3.10.3
+      - image: eddyashton/eevm-ci-build
     steps:
       - checkout
       - run:
