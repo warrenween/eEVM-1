@@ -3,35 +3,24 @@ jobs:
   build:
     docker:
       - image: eddyashton/eevm-ci-build:0.0.1
-
     steps:
       - checkout
-
       - run:
-        name: Make build directory
-        command: mkdir build
-
+            name: Make build directory
+            command: mkdir build
       - run:
-        name: CMake
-        command: cmake ..
-        working_directory: build
-
+            name: CMake
+            command: cmake ..
+            working_directory: build
       - run:
-        name: Build
-        command: make
-        working_directory: build
-
+            name: Build
+            command: make
+            working_directory: build
       - run:
-        name: Fix exec permission
-        command: chmod +x unit_test_wrapper.sh
-        working_directory: tests
-
+            name: Quick tests
+            command: make test
+            working_directory: build
       - run:
-        name: Quick tests
-        command: make test
-        working_directory: build
-
-      - run:
-        name: All tests
-        command: time TEST_DIR=../3rdparty/test_cases/ ./evm_tests -ns -d
-        working_directory: build
+            name: All tests
+            command: time TEST_DIR=../3rdparty/test_cases/ ./evm_tests -ns -d
+            working_directory: build
