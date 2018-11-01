@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: eddyashton/eevm-ci-build
+      - image: eddyashton/eevm-ci-build:0.0.1
     steps:
       - checkout
       - run:
